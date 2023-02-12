@@ -1,0 +1,62 @@
+h1{
+    text-align: center;
+}
+body{
+    background-color:#D3D3D3;
+}
+label {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: gray;
+  }
+
+  /* Styling for the label when it has focus */
+  label:focus {
+    color: blue;
+  }
+input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    width: 60%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  form {
+    width: 500px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  select {
+    padding: 10px;
+    font-size: 18px;
+    width: 20%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+ button{
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+ }
+  .div2{
+    text-align: center;
+  }
