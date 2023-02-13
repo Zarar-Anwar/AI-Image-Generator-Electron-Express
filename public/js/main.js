@@ -4,15 +4,15 @@ const SubmitHandler=(e)=>{
     document.querySelector(".msg").textContent=""
     document.querySelector(".image").src=""
     const prompt=document.getElementById("prompt").value
-    const size=document.getElementById("size").value
+    // const size=document.getElementById("size").value
     if(prompt===''){
         alert("Please add Something")
         return
     }
-    generateImageRequest(prompt,size)
+    generateImageRequest(prompt)
 }
 
-const generateImageRequest= async(prompt,size)=>{
+const generateImageRequest= async(prompt)=>{
 try {
     showSpinner()
     const response=await fetch("/openai/generateImage",{
@@ -22,7 +22,7 @@ try {
         },
         body:JSON.stringify({
             prompt,
-            size
+            
         })
     })
     if(!response.ok){
@@ -33,6 +33,10 @@ try {
     const data=await response.json()
     const imageUrl=data.data
     document.querySelector(".image").src=imageUrl
+    const li=document.createElement("li")
+    const text=document.createTextNode(prompt.toUpperCase())
+    li.appendChild(text)
+    document.querySelector("ul").appendChild(li)
 } catch (error) {
     document.querySelector(".msg").textContent=error
 }
@@ -46,7 +50,11 @@ const removeSpinner=()=>{
 }
 
 
+const removeList=(e)=>
+{
+e.preventDefault()
+document.querySelector("ul").innerHTML=""
+}
 
-
-
+document.getElementById("clear-btn").addEventListener("click",removeList)
 document.getElementById("form").addEventListener("submit",SubmitHandler)
