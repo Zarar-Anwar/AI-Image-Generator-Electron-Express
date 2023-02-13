@@ -6,33 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/spinner.css">
-    <title>AI Image Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+     rel="stylesheet" 
+     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
+     crossorigin="anonymous">
+    <link rel="stylesheet" id="link" href="./css/light-theme.css">
+    <title id="title">Light</title>
 </head>
 <body>
-    <div>
-        <h1>AI Image Generator</h1>
+    <div class="row bg-dark">
+        <div class="col md-4">
+            <button id="theme">Toggle Dark Mode</button>
+            <button id="clear-btn">Clear List</button>
+        </div>
+        <div class="col  md-6">
+            <h3>AI Image Generator</h3>
+        </div>
     </div>
-    <div>
-        <form id="form">
-            <label for="input">TEXT</label>
-            <br><input id="prompt" type="text" placeholder="Enter text here">
-            <br><label >Chose Size</label>
-            <br><select id="size" name="size">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-            </select>
-            <br>
-            <br>
-            <input type="submit" id="btn" value="Generate">
+    <body>
+        <div class="sidebar">
+            <ul>
+            </ul>
+        </div>
+        <div class="chat-container">
+          <div class="chat-bubble bot-bubble">
+            <img src="" class="image" alt="">
+            <h2 class="msg"></h2>
+        </div>
+    </div>
+    <form action="" id="form">
+        <input type="text" autofocus id="prompt" class="chat-input" placeholder="Type your message here..."/>
+        <button id="theme">Generate</button>
         </form>
-    </div>
-    <div class="div2">
-        <button id="btn2">Save Image</button>
-        <h2 class="msg"></h2>
-        <img src="" class="image" alt="">
-    </div>
-    <div class="spinner"></div>
+      </body>
+        <div class="spinner"></div>
     <script src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script>
+        
+// const {ipcRenderer}=require("electron")
+
+
+const ButtonHanler=(e)=>{
+    e.preventDefault()
+    const image=document.querySelector(".image").src
+    ipcRenderer.send("image:send",image)
+}
+
+
+const  toggleDarkMode=(e)=>{
+    e.preventDefault()
+   console.log("Btn Clicked")
+   const title=document.getElementById("title").innerText
+   if(title==="Light")
+   {
+       document.getElementById('link').href='./css/dark-theme.css'
+       document.getElementById("theme").innerText="Toggle Light Mode"
+       document.getElementById("title").innerText="Dark"
+       return
+    }
+    if(title==='Dark')
+    {
+        document.getElementById('link').href='./css/light-theme.css'
+        document.getElementById("title").innerText="Light"
+        document.getElementById("theme").innerText="Toggle Dark Mode"
+       return
+       
+    }
+    
+}
+document.getElementById("theme").addEventListener("click",toggleDarkMode)
+// document.getElementById("btn2").addEventListener("click",ButtonHanler)
+</script>
 </body>
 </html>
